@@ -6,10 +6,19 @@ import Button from '../components/Button'
 function App() {
   return (
     <div className="App flex justify-center h-screen">
-      <h1>Landing</h1>
-      <div className="flex justify-around w-1/2">
-        <Button>New Project</Button>
-        <Button>Log Time</Button>
+      <div className="flex justify-center w-1/2 content-around flex-wrap">
+        <div>
+          <h1 className="text-5xl font-bold m-3 text-center">
+            ACME PROJECT MANAGEMENT
+          </h1>
+          <p>
+            A simple app for creating project and logging hours against them.
+          </p>
+        </div>
+        <div className="flex justify-around mt-7 w-full flex-wrap">
+          <Button className="m-3">New Project</Button>
+          <Button className="m-3">Log Time</Button>
+        </div>
       </div>
     </div>
   )
