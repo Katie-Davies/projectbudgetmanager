@@ -1,7 +1,7 @@
 function CreateProject() {
   console.log('createproject')
   return (
-    <div>
+    <div className="flex flex-grow">
       <h1>Create Project</h1>
     </div>
   )

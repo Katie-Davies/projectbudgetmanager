@@ -5,7 +5,7 @@ import Button from '../components/Button'
 
 function App() {
   return (
-    <div className="App flex justify-center h-screen">
+    <div className="App flex justify-center flex-grow">
       <div className="flex justify-center w-1/2 content-around flex-wrap">
         <div>
           <h1 className="text-5xl font-bold m-3 text-center">
