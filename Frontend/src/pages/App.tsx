@@ -15,7 +15,7 @@ function App() {
             A simple app for creating project and logging hours against them.
           </p>
         </div>
-        <div className="flex justify-around mt-7 w-full flex-wrap">
+        <div className="flex justify-around mt-7 w-3/4 flex-wrap">
           <Button className="m-3">New Project</Button>
           <Button className="m-3">Log Time</Button>
         </div>
