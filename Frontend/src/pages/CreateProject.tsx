@@ -7,7 +7,7 @@ function CreateProject() {
         <form>
           <input type="text" placeholder="Project name" />
 
-          <input type="text" placeholder="Porject Owner" />
+          <input type="text" placeholder="Project Owner" />
           <input type="text" placeholder="Budget" />
         </form>
       </div>
