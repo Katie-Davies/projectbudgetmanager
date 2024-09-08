@@ -1,3 +1,5 @@
+import Button from '../components/Button'
+
 function CreateProject() {
   console.log('createproject')
   return (
@@ -30,6 +32,9 @@ function CreateProject() {
             className="m-3 border-solid border-2 border-gray-300"
           />
         </form>
+        <div className="flex justify-center">
+          <Button>Create</Button>
+        </div>
       </div>
     </div>
   )
