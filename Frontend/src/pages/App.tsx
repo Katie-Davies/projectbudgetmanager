@@ -2,8 +2,14 @@ import React from 'react'
 
 import '../App.css'
 import Button from '../components/Button'
+import { useNavigate } from 'react-router-dom'
 
 function App() {
+  const navigate = useNavigate()
+
+  const handleCreateClick = () => {
+    navigate('/createproject')
+  }
   return (
     <div className="App flex justify-center flex-grow">
       <div className="flex justify-center w-1/2 content-around flex-wrap">

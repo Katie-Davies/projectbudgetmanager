@@ -6,7 +6,6 @@ function CreateProject() {
       <div>
         <form>
           <input type="text" placeholder="Project name" />
-
           <input type="text" placeholder="Project Owner" />
           <input type="text" placeholder="Budget" />
         </form>
