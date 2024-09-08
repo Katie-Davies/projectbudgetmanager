@@ -5,7 +5,9 @@ function CreateProject() {
       <h1>Create Project</h1>
       <div>
         <form>
-          <input type="text" placeholder="Project name"></input>
+          <input type="text" placeholder="Project name" />
+
+          <input type="text" placeholder="Porject Owner" />
         </form>
       </div>
     </div>
