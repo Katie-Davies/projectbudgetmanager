@@ -26,7 +26,9 @@ function LogPage() {
           ))}
         </select>
       </form>
-      <Button onClick={(e) => handleClick(e)}>View All Projects</Button>
+      <Button onClick={(e) => handleClick(e)} className="w-1/6 ">
+        View All
+      </Button>
     </div>
   )
 }
