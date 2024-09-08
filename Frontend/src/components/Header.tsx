@@ -5,8 +5,7 @@ function Header() {
 
   return (
     <div className="flex justify-start bg-customBlue h-16 content-center flex-wrap">
-      {location.pathname === '/createproject' ||
-      location.pathname === '/log' ? (
+      {location.pathname !== '/' ? (
         <Link
           className="text-white font-bold text-2xl ml-5"
           to=".."
