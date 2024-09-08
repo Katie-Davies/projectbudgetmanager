@@ -4,7 +4,7 @@ function CreateProject() {
   console.log('createproject')
   return (
     <div className="flex flex-grow content-center  flex-col flex-wrap">
-      <h1 className="text-4xl m-5">Create a Project</h1>
+      <h1 className="text-4xl m-10">Create a Project</h1>
       <div>
         <form className="flex flex-col">
           <label htmlFor="projectName" className="ml-3">
@@ -33,7 +33,7 @@ function CreateProject() {
           />
         </form>
         <div className="flex justify-center">
-          <Button>Create</Button>
+          <Button className="m-4">CREATE</Button>
         </div>
       </div>
     </div>
