@@ -6,4 +6,9 @@ html,
 body {
   height: 100%;
   margin: 0;
+  font-family: 'Public Sans', sans-serif;
+}
+
+input:focus {
+  border-color: #3b82f6; /* Tailwind's blue-500 color */
 }
