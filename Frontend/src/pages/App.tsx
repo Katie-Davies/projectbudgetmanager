@@ -7,8 +7,15 @@ import { useNavigate } from 'react-router-dom'
 function App() {
   const navigate = useNavigate()
 
-  const handleCreateClick = () => {
-    navigate('/createproject')
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const buttonText = event.currentTarget.textContent
+    if (buttonText === 'New Project') {
+      navigate('/createproject')
+      console.log('createproject')
+    } else if (buttonText === 'Log Time') {
+      navigate('/log')
+      console.log('log')
+    }
   }
   return (
     <div className="App flex justify-center flex-grow">
@@ -22,8 +29,12 @@ function App() {
           </p>
         </div>
         <div className="flex justify-around mt-7 w-3/4 flex-wrap">
-          <Button className="m-3">New Project</Button>
-          <Button className="m-3">Log Time</Button>
+          <Button className="m-3" onClick={(e) => handleClick(e)}>
+            New Project
+          </Button>
+          <Button className="m-3" onClick={(e) => handleClick(e)}>
+            Log Time
+          </Button>
         </div>
       </div>
     </div>

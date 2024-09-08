@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 
 function Button(props: {
-  onClick?: () => void
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
   className?: string
   children: ReactNode
 }) {
