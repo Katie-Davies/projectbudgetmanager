@@ -4,6 +4,7 @@ function AllProjects() {
       projectName: 'Disney',
       projectOwner: 'Kate',
       budget: '100,000',
+      usedBudget: '50,000',
       remainingBudget: '50,000',
     },
     {
@@ -50,6 +51,12 @@ function AllProjects() {
             <th className="border border-slate-300 p-3 bg-customBlue text-white">
               BUDGET
             </th>
+            <th className="border border-slate-300 p-3 bg-customBlue text-white">
+              USED
+            </th>
+            <th className="border border-slate-300 p-3 bg-customBlue text-white">
+              REMAINING
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -62,13 +69,13 @@ function AllProjects() {
                 <td className="border border-slate-300 p-2">
                   {project.projectOwner}
                 </td>
-                <td className="border border-slate-300 p-2">
+                <td className="border border-slate-300 p-2 text-center ">
                   {project.budget}
                 </td>
-                <td className="border border-slate-300 p-2">
+                <td className="border border-slate-300 p-2 text-center">
                   {project.usedBudget}
                 </td>
-                <td className="border border-slate-300 p-2">
+                <td className="border border-slate-300 bg-green-800 bg-opacity-20 p-2 text-center">
                   {project.remainingBudget}
                 </td>
               </tr>
