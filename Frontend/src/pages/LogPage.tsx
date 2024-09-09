@@ -14,7 +14,7 @@ function LogPage() {
   }
   return (
     <div className="flex flex-grow flex-col flex-wrap content-center">
-      <h1>LogPage</h1>
+      <h1 className="text-4xl m-5">Log Time</h1>
       <form className="flex flex-col">
         <label htmlFor="dropwdown"> PROJECT:</label>
         <select name="dropdown" id="dropdown">
