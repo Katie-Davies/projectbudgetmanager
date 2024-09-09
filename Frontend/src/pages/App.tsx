@@ -15,8 +15,12 @@ function App() {
     } else if (buttonText === 'Log Time') {
       navigate('/log')
       console.log('log')
+    } else if (buttonText === 'Report') {
+      navigate('/allprojects')
+      console.log('allprojects')
     }
   }
+
   return (
     <div className="App flex justify-center flex-grow">
       <div className="flex justify-center w-1/2 content-around flex-wrap">
@@ -34,6 +38,9 @@ function App() {
           </Button>
           <Button className="m-3" onClick={(e) => handleClick(e)}>
             Log Time
+          </Button>
+          <Button onClick={(e) => handleClick(e)} className="m-3 ">
+            Report
           </Button>
         </div>
       </div>

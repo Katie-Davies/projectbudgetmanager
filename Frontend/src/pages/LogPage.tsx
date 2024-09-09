@@ -7,11 +7,7 @@ function LogPage() {
   console.log('logpage')
 
   const navigate = useNavigate()
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    navigate('/allprojects')
 
-    console.log('allprojects')
-  }
   return (
     <div className="flex flex-grow flex-col flex-wrap content-center">
       <h1 className="text-4xl m-5">Log Time</h1>
@@ -43,11 +39,6 @@ function LogPage() {
       <div className="flex justify-center flex-col flex-wrap content-center m-3">
         <Button className="m-4">LOG TIME</Button>
         <p className="text-center">OR</p>
-      </div>
-      <div className="flex justify-center">
-        <Button onClick={(e) => handleClick(e)} className="w-full ">
-          VIEW ALL
-        </Button>
       </div>
     </div>
   )
