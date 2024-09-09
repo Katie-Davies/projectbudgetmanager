@@ -1,44 +1,65 @@
+import { useState } from 'react'
+const data = [
+  {
+    projectName: 'Disney',
+    projectOwner: 'Kate',
+    budget: 100000,
+    usedBudget: 50000,
+    remainingBudget: 50000,
+  },
+  {
+    projectName: 'Education',
+    projectOwner: 'Kate',
+    budget: 70000,
+    usedBudget: 40000,
+    remainingBudget: 30000,
+  },
+  {
+    projectName: 'coke',
+    projectOwner: 'Kate',
+    budget: 40000,
+    usedBudget: 30000,
+    remainingBudget: 10000,
+  },
+  {
+    projectName: 'Marvel',
+    projectOwner: 'Kate',
+    budget: 60000,
+    usedBudget: 10000,
+    remainingBudget: 50000,
+  },
+  {
+    projectName: 'Power',
+    projectOwner: 'Kate',
+    budget: 90000,
+    usedBudget: 90000,
+    remainingBudget: 0,
+  },
+]
 function AllProjects() {
-  const data = [
-    {
-      projectName: 'Disney',
-      projectOwner: 'Kate',
-      budget: '100,000',
-      usedBudget: '50,000',
-      remainingBudget: '50,000',
-    },
-    {
-      projectName: 'Disney',
-      projectOwner: 'Kate',
-      budget: '70,000',
-      usedBudget: '40,000',
-      remainingBudget: '30,000',
-    },
-    {
-      projectName: 'Disney',
-      projectOwner: 'Kate',
-      budget: '40,000',
-      usedBudget: '30,000',
-      remainingBudget: '10,000',
-    },
-    {
-      projectName: 'Disney',
-      projectOwner: 'Kate',
-      budget: '60,000',
-      usedBudget: '10,000',
-      remainingBudget: '50,000',
-    },
-    {
-      projectName: 'Disney',
-      projectOwner: 'Kate',
-      budget: '90,000',
-      usedBudget: '90,000',
-      remainingBudget: '0',
-    },
-  ]
+  const [sortedData, setSortedData] = useState(data)
+  const [isSorted, setIsSorted] = useState(false)
+
+  const handleSort = () => {
+    const sorted = [...sortedData].sort(
+      (a, b) =>
+        isSorted
+          ? a.remainingBudget - b.remainingBudget // Ascending order if already sorted
+          : b.remainingBudget - a.remainingBudget // Descending order
+    )
+    setSortedData(sorted)
+    setIsSorted(!isSorted)
+    console.log('sorted')
+  }
   return (
     <div className="flex justify-start flex-col content-center flex-wrap flex-grow">
       <h1 className="text-4xl m-5 text-center">All Projects</h1>
+      <button
+        onClick={handleSort}
+        className="bg-customBlue text-white p-2 m-2 rounded-md"
+      >
+        Order by remaining Budget
+      </button>
       <table className="table-auto border-collapse border border-slate-400 ">
         <thead>
           <tr>
@@ -60,7 +81,7 @@ function AllProjects() {
           </tr>
         </thead>
         <tbody>
-          {data.map((project) => {
+          {sortedData.map((project) => {
             return (
               <tr key={project.projectName}>
                 <td className="border border-slate-300 p-2">
@@ -77,7 +98,7 @@ function AllProjects() {
                 </td>
                 <td
                   className={`border border-slate-300  p-2 text-center ${
-                    project.remainingBudget === '0'
+                    project.remainingBudget === 0
                       ? 'bg-red-800 bg-opacity-20'
                       : 'bg-green-800 bg-opacity-20'
                   }`}
