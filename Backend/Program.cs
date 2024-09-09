@@ -27,7 +27,7 @@ var projects = new[]
         ProjectOwner = "Kate",
         Budget = 100000,
         UsedBudget = 50000,
-        RemainingBudget = 50000
+
     },
     new Project
     {
@@ -36,7 +36,7 @@ var projects = new[]
         ProjectOwner = "Kate",
         Budget = 70000,
         UsedBudget = 40000,
-        RemainingBudget = 30000
+
     },
     new Project
     {
@@ -45,7 +45,7 @@ var projects = new[]
         ProjectOwner = "Kate",
         Budget = 40000,
         UsedBudget = 30000,
-        RemainingBudget = 10000
+
     },
     new Project
     {
@@ -54,7 +54,7 @@ var projects = new[]
         ProjectOwner = "Kate",
         Budget = 60000,
         UsedBudget = 10000,
-        RemainingBudget = 50000
+
     },
     new Project
     {
@@ -63,7 +63,7 @@ var projects = new[]
         ProjectOwner = "Kate",
         Budget = 90000,
         UsedBudget = 90000,
-        RemainingBudget = 0
+
     }};
 
 app.MapGet("/projects", () =>
@@ -89,7 +89,7 @@ app.MapPost("/projects", (string projectName, string projectOwner, int budget, i
     projectOwner = projectOwner,
     budget = budget,
     usedBudget = usedBudget,
-    remainingBudget = remainingBudget
+
   };
 
   projects = projects.Append(project).ToArray();
