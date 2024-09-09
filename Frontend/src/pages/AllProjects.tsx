@@ -32,8 +32,8 @@ function AllProjects() {
       projectName: 'Disney',
       projectOwner: 'Kate',
       budget: '90,000',
-      usedBudget: '40,000',
-      remainingBudget: '50,000',
+      usedBudget: '90,000',
+      remainingBudget: '0',
     },
   ]
   return (
@@ -75,7 +75,13 @@ function AllProjects() {
                 <td className="border border-slate-300 p-2 text-center">
                   {project.usedBudget}
                 </td>
-                <td className="border border-slate-300 bg-green-800 bg-opacity-20 p-2 text-center">
+                <td
+                  className={`border border-slate-300  p-2 text-center ${
+                    project.remainingBudget === '0'
+                      ? 'bg-red-800 bg-opacity-20'
+                      : 'bg-green-800 bg-opacity-20'
+                  }`}
+                >
                   {project.remainingBudget}
                 </td>
               </tr>
