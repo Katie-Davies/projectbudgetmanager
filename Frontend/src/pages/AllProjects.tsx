@@ -7,7 +7,7 @@ function AllProjects() {
     { projectName: 'Disney', projectOwner: 'Kate', budget: '100,000' },
   ]
   return (
-    <div className="flex justify-center flex-col content-center flex-wrap">
+    <div className="flex justify-start flex-col content-center flex-wrap flex-grow">
       <h1 className="text-4xl m-5 text-center">All Projects</h1>
       <table className="table-auto border-collapse border border-slate-400 ">
         <thead>
