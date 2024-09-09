@@ -1,4 +1,11 @@
 function AllProjects() {
+  const data = [
+    { projectName: 'Disney', projectOwner: 'Kate', budget: '100,000' },
+    { projectName: 'Disney', projectOwner: 'Kate', budget: '100,000' },
+    { projectName: 'Disney', projectOwner: 'Kate', budget: '100,000' },
+    { projectName: 'Disney', projectOwner: 'Kate', budget: '100,000' },
+    { projectName: 'Disney', projectOwner: 'Kate', budget: '100,000' },
+  ]
   return (
     <div className="flex justify-center flex-col content-center flex-wrap">
       <h1 className="text-4xl m-5 text-center">All Projects</h1>
@@ -6,7 +13,7 @@ function AllProjects() {
         <thead>
           <tr>
             <th className="border border-slate-300 bg-customBlue text-white p-3">
-              PROJECT NAME{' '}
+              PROJECT NAME
             </th>
             <th className="border border-slate-300 p-3 bg-customBlue text-white">
               PROJECT OWNER
@@ -17,11 +24,21 @@ function AllProjects() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td className="border border-slate-300 p-2 ">Disney </td>
-            <td className="border border-slate-300 p-2">Kate</td>
-            <td className="border border-slate-300 p-2">100,000</td>
-          </tr>
+          {data.map((project) => {
+            return (
+              <tr key={project.projectName}>
+                <td className="border border-slate-300 p-2">
+                  {project.projectName}
+                </td>
+                <td className="border border-slate-300 p-2">
+                  {project.projectOwner}
+                </td>
+                <td className="border border-slate-300 p-2">
+                  {project.budget}
+                </td>
+              </tr>
+            )
+          })}
         </tbody>
       </table>
     </div>
