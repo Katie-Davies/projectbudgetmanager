@@ -28,7 +28,7 @@ function LogPage() {
         <input
           type="text"
           placeholder="Hours"
-          className="m-3 border-solid border-2 border-gray-300"
+          className="m-3 border-solid border-2 border-gray-300 focus:outline-customBlue h-10 placeholder:p-3"
         />
       </form>
       <Button onClick={(e) => handleClick(e)} className="w-1/6 ">
