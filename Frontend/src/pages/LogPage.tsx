@@ -25,7 +25,11 @@ function LogPage() {
             </option>
           ))}
         </select>
-        <input type="text" placeholder="Hours" />
+        <input
+          type="text"
+          placeholder="Hours"
+          className="m-3 border-solid border-2 border-gray-300"
+        />
       </form>
       <Button onClick={(e) => handleClick(e)} className="w-1/6 ">
         View All
