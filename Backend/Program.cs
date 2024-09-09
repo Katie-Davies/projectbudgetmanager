@@ -101,9 +101,9 @@ app.MapPost("/projects", (Project project) =>
 
   {
     ProjectId = projects.Max(x => x.ProjectId) + 1,
-    ProjectName = project.projectName,
-    ProjectOwner = project.projectOwner,
-    Budget = project.budget,
+    ProjectName = project.ProjectName,
+    ProjectOwner = project.ProjectOwner,
+    Budget = project.Budget,
     UsedBudget = 0
 
   };

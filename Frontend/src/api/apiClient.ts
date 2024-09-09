@@ -8,7 +8,7 @@ export async function getAllProjects() {
   return projects.body as IProject[]
 }
 
-export async function creatProject(project: IProject) {
+export async function createNewProject(project: IProject) {
   return await request.post(`${api}/projects`).send(project)
 }
 

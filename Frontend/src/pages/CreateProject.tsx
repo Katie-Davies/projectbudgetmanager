@@ -1,6 +1,14 @@
 import Button from '../components/Button'
+import { createNewProject } from '../api/apiClient'
 
 function CreateProject() {
+  const project = {
+    projectName: 'Project 2',
+    projectOwner: 'Owner 2',
+    budget: 10000,
+  }
+  createNewProject(project)
+
   return (
     <div className="flex flex-grow content-center  flex-col flex-wrap">
       <h1 className="text-4xl m-10">Create a Project</h1>

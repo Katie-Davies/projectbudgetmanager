@@ -3,6 +3,6 @@ export interface IProject {
   projectName: string
   projectOwner: string
   budget: number
-  usedBudget: number
+  usedBudget?: number
   remainingBudget?: number
 }

@@ -6,7 +6,7 @@ namespace backend.Models
     public string ProjectName { get; set; } = string.Empty;
     public string ProjectOwner { get; set; } = string.Empty;
     public int Budget { get; set; }
-    public int UsedBudget { get; set; }
-    public int RemainingBudget => Budget - UsedBudget;
+    public int UsedBudget { get; set; } = 0;
+    public int? RemainingBudget => Budget - UsedBudget;
   }
 }
