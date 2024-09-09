@@ -12,18 +12,12 @@ function App() {
     const buttonText = event.currentTarget.textContent
     if (buttonText === 'New Project') {
       navigate('/createproject')
-      console.log('createproject')
     } else if (buttonText === 'Log Time') {
       navigate('/log')
-      console.log('log')
     } else if (buttonText === 'Report') {
       navigate('/allprojects')
-      console.log('allprojects')
     }
   }
-  const data = getAllProjects()
-
-  console.log(data)
 
   return (
     <div className="App flex justify-center flex-grow">
