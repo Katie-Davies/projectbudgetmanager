@@ -32,7 +32,7 @@ function LogPage() {
           ))}
         </select>
         <label htmlFor="hours" className="m-3">
-          TIME WORKED
+          TIME WORKED:
         </label>
         <input
           type="text"
