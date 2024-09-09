@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/katiedavies/webDevelopment/PersonalProjects/projectbudgetmanager/Backend/Backend/Backend.csproj": {}
+    "/Users/katiedavies/webDevelopment/PersonalProjects/projectbudgetmanager/Backend/Backend.csproj": {}
   },
   "projects": {
-    "/Users/katiedavies/webDevelopment/PersonalProjects/projectbudgetmanager/Backend/Backend/Backend.csproj": {
+    "/Users/katiedavies/webDevelopment/PersonalProjects/projectbudgetmanager/Backend/Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/katiedavies/webDevelopment/PersonalProjects/projectbudgetmanager/Backend/Backend/Backend.csproj",
+        "projectUniqueName": "/Users/katiedavies/webDevelopment/PersonalProjects/projectbudgetmanager/Backend/Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "/Users/katiedavies/webDevelopment/PersonalProjects/projectbudgetmanager/Backend/Backend/Backend.csproj",
+        "projectPath": "/Users/katiedavies/webDevelopment/PersonalProjects/projectbudgetmanager/Backend/Backend.csproj",
         "packagesPath": "/Users/katiedavies/.nuget/packages/",
-        "outputPath": "/Users/katiedavies/webDevelopment/PersonalProjects/projectbudgetmanager/Backend/Backend/obj/",
+        "outputPath": "/Users/katiedavies/webDevelopment/PersonalProjects/projectbudgetmanager/Backend/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/katiedavies/.nuget/NuGet/NuGet.Config"

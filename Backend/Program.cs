@@ -14,7 +14,7 @@ if (app.Environment.IsDevelopment())
   app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 
 var projects = new[]
 {
@@ -61,22 +61,19 @@ var projects = new[]
 
 app.MapGet("/projects", () =>
 {
-  var forecast = Enumerable.Range(1, 5).Select(index =>
-      new WeatherForecast
-      (
-          DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-          Random.Shared.Next(-20, 55),
-          summaries[Random.Shared.Next(summaries.Length)]
-      ))
-      .ToArray();
-  return forecast;
+  if (projects == null)
+  {
+    return Results.NotFound();
+  }
+  else
+  {
+    return Results.Ok(projects);
+  }
+
 })
-.WithName("GetWeatherForecast")
+.WithName("GetProjects")
 .WithOpenApi();
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-  public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+
