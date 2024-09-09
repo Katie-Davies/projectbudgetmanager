@@ -95,7 +95,7 @@ app.MapGet("/projects", () =>
 .WithName("GetProjects")
 .WithOpenApi();
 
-app.MapPost("/projects", (string projectName, string projectOwner, int budget, int usedBudget, int remainingBudget) =>
+app.MapPost("/projects", (string projectName, string projectOwner, int budget) =>
 {
   var project = new Project
 
@@ -104,7 +104,7 @@ app.MapPost("/projects", (string projectName, string projectOwner, int budget, i
     ProjectName = projectName,
     ProjectOwner = projectOwner,
     Budget = budget,
-    UsedBudget = usedBudget,
+    UsedBudget = 0
 
   };
 
@@ -113,18 +113,18 @@ app.MapPost("/projects", (string projectName, string projectOwner, int budget, i
 })
 .WithName("CreateProject");
 
-app.MapPut("/projects/{projectName}", (int projectId, string projectName, string projectOwner, int budget, int usedBudget) =>
+app.MapPut("/projects/{projectId}", (Project updatedProject) =>
 {
-  var project = projects.FirstOrDefault(x => x.ProjectId == projectId);
+  var project = projects.FirstOrDefault(x => x.ProjectId == updatedProject.ProjectId);
   if (project == null)
   {
     return Results.NotFound();
   }
-  project.ProjectName = projectName;
-  project.ProjectOwner = projectOwner;
-  project.Budget = budget;
-  project.UsedBudget = usedBudget;
 
+  project.ProjectName = updatedProject.ProjectName;
+  project.ProjectOwner = updatedProject.ProjectOwner;
+  project.Budget = updatedProject.Budget;
+  project.UsedBudget = updatedProject.UsedBudget;
 
   return Results.Ok(project);
 }).WithName("UpdateProject");
