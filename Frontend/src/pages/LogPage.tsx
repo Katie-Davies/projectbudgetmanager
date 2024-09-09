@@ -4,10 +4,6 @@ import Button from '../components/Button'
 function LogPage() {
   const fakeData = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
 
-  console.log('logpage')
-
-  const navigate = useNavigate()
-
   return (
     <div className="flex flex-grow flex-col flex-wrap content-center">
       <h1 className="text-4xl m-5">Log Time</h1>
