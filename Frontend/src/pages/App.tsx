@@ -3,6 +3,7 @@ import React from 'react'
 import '../App.css'
 import Button from '../components/Button'
 import { useNavigate } from 'react-router-dom'
+import { getAllProjects } from '../api/apiClient'
 
 function App() {
   const navigate = useNavigate()
@@ -20,6 +21,9 @@ function App() {
       console.log('allprojects')
     }
   }
+  const data = getAllProjects()
+
+  console.log(data)
 
   return (
     <div className="App flex justify-center flex-grow">
