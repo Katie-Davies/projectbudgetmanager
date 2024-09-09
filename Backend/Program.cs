@@ -15,6 +15,15 @@ if (app.Environment.IsDevelopment())
 }
 
 // app.UseHttpsRedirection();
+public class Project
+{
+  public int ProjectId { get; set; }
+  public string ProjectName { get; set; }
+  public string ProjectOwner { get; set; }
+  public int Budget { get; set; }
+  public int UsedBudget { get; set; }
+  public int RemainingBudget { get; set; }
+}
 
 var projects = new[]
 {
@@ -89,6 +98,22 @@ app.MapPost("/projects", (string projectName, string projectOwner, int budget, i
   return Results.Created($"/projects/{projectName}", project);
 })
 .WithName("CreateProject");
+
+app.MapPut("/projects/{projectName}", (int projectId, string projectName, string projectOwner, int budget, int usedBudget, int remainingBudget) =>
+{
+  var project = projects.FirstOrDefault(x => x.projectId == projectId);
+  if (project == null)
+  {
+    return Results.NotFound();
+  }
+
+  project.projectOwner = projectOwner;
+  project.budget = budget;
+  project.usedBudget = usedBudget;
+  project.remainingBudget = remainingBudget;
+
+  return Results.Ok(project);
+}).WithName("UpdateProject");
 
 app.Run();
 
