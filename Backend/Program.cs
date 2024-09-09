@@ -1,14 +1,11 @@
 using backend.Models;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Get the connection string from environment variables
-string connection = builder.Configuration.GetConnectionString("DefaultConnection");
-if (string.IsNullOrEmpty(connection))
-{
-  connection = Environment.GetEnvironmentVariable("AZURE_SQL_CONNECTIONSTRING");
-}
+string connection = builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING");
 
 // Register the DbContext with the connection string
 builder.Services.AddDbContext<ProjectDbContext>(options =>
