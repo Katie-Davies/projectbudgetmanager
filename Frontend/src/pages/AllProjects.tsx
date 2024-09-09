@@ -70,10 +70,10 @@ function AllProjects() {
                   {project.projectOwner}
                 </td>
                 <td className="border border-slate-300 p-2 text-center ">
-                  {project.budget}
+                  ${project.budget}
                 </td>
                 <td className="border border-slate-300 p-2 text-center">
-                  {project.usedBudget}
+                  ${project.usedBudget}
                 </td>
                 <td
                   className={`border border-slate-300  p-2 text-center ${
@@ -82,7 +82,7 @@ function AllProjects() {
                       : 'bg-green-800 bg-opacity-20'
                   }`}
                 >
-                  {project.remainingBudget}
+                  ${project.remainingBudget}
                 </td>
               </tr>
             )
