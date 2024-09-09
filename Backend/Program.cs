@@ -1,3 +1,5 @@
+using backend.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -15,57 +17,53 @@ if (app.Environment.IsDevelopment())
 }
 
 // app.UseHttpsRedirection();
-public class Project
-{
-  public int ProjectId { get; set; }
-  public string ProjectName { get; set; }
-  public string ProjectOwner { get; set; }
-  public int Budget { get; set; }
-  public int UsedBudget { get; set; }
-  public int RemainingBudget { get; set; }
-}
+
 
 var projects = new[]
 {
- new
+ new Project
     {
-        projectName = "Disney",
-        projectOwner = "Kate",
-        budget = 100000,
-        usedBudget = 50000,
-        remainingBudget = 50000
+        ProjectName = "Disney",
+        ProjectOwner = "Kate",
+        Budget = 100000,
+        UsedBudget = 50000,
+        RemainingBudget = 50000
     },
-    new
+    new Project
     {
-        projectName = "Education",
-        projectOwner = "Kate",
-        budget = 70000,
-        usedBudget = 40000,
-        remainingBudget = 30000
+        ProjectId = 2,
+        ProjectName = "Education",
+        ProjectOwner = "Kate",
+        Budget = 70000,
+        UsedBudget = 40000,
+        RemainingBudget = 30000
     },
-    new
+    new Project
     {
-        projectName = "Coke",
-        projectOwner = "Kate",
-        budget = 40000,
-        usedBudget = 30000,
-        remainingBudget = 10000
+       ProjectId = 1,
+        ProjectName = "Coke",
+        ProjectOwner = "Kate",
+        Budget = 40000,
+        UsedBudget = 30000,
+        RemainingBudget = 10000
     },
-    new
+    new Project
     {
-        projectName = "Marvel",
-        projectOwner = "Kate",
-        budget = 60000,
-        usedBudget = 10000,
-        remainingBudget = 50000
+       ProjectId = 3,
+        ProjectName = "Marvel",
+        ProjectOwner = "Kate",
+        Budget = 60000,
+        UsedBudget = 10000,
+        RemainingBudget = 50000
     },
-    new
+    new Project
     {
-        projectName = "Power",
-        projectOwner = "Kate",
-        budget = 90000,
-        usedBudget = 90000,
-        remainingBudget = 0
+       ProjectId = 4,
+        ProjectName = "Power",
+        ProjectOwner = "Kate",
+        Budget = 90000,
+        UsedBudget = 90000,
+        RemainingBudget = 0
     }};
 
 app.MapGet("/projects", () =>
