@@ -1,4 +1,5 @@
 using backend.Models;
+using System.Linq;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +23,7 @@ if (app.Environment.IsDevelopment())
 var projects = new[]
 {
  new Project
-    {
+    {ProjectId = 10,
         ProjectName = "Disney",
         ProjectOwner = "Kate",
         Budget = 100000,
@@ -85,10 +86,11 @@ app.MapPost("/projects", (string projectName, string projectOwner, int budget, i
 {
   var project = new
   {
-    projectName = projectName,
-    projectOwner = projectOwner,
-    budget = budget,
-    usedBudget = usedBudget,
+    ProjectId = projects.Max(x => x.ProjectId) + 1,
+    ProjectName = projectName,
+    ProjectOwner = projectOwner,
+    Budget = budget,
+    UsedBudget = usedBudget,
 
   };
 
@@ -99,7 +101,7 @@ app.MapPost("/projects", (string projectName, string projectOwner, int budget, i
 
 app.MapPut("/projects/{projectName}", (int projectId, string projectName, string projectOwner, int budget, int usedBudget, int remainingBudget) =>
 {
-  var project = projects.FirstOrDefault(x => x.projectId == projectId);
+  var project = projects.FirstOrDefault(x => x.ProjectId == projectId);
   if (project == null)
   {
     return Results.NotFound();
