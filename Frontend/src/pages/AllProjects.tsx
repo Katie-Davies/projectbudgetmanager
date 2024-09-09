@@ -1,44 +1,44 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import useGetAllProjects from '../hooks/useGetAllProjects'
 import { IProject } from '../../models/models'
 
-const data = [
-  {
-    projectName: 'Disney',
-    projectOwner: 'Kate',
-    budget: 100000,
-    usedBudget: 50000,
-    remainingBudget: 50000,
-  },
-  {
-    projectName: 'Education',
-    projectOwner: 'Kate',
-    budget: 70000,
-    usedBudget: 40000,
-    remainingBudget: 30000,
-  },
-  {
-    projectName: 'coke',
-    projectOwner: 'Kate',
-    budget: 40000,
-    usedBudget: 30000,
-    remainingBudget: 10000,
-  },
-  {
-    projectName: 'Marvel',
-    projectOwner: 'Kate',
-    budget: 60000,
-    usedBudget: 10000,
-    remainingBudget: 50000,
-  },
-  {
-    projectName: 'Power',
-    projectOwner: 'Kate',
-    budget: 90000,
-    usedBudget: 90000,
-    remainingBudget: 0,
-  },
-]
+// const data = [
+//   {
+//     projectName: 'Disney',
+//     projectOwner: 'Kate',
+//     budget: 100000,
+//     usedBudget: 50000,
+//     remainingBudget: 50000,
+//   },
+//   {
+//     projectName: 'Education',
+//     projectOwner: 'Kate',
+//     budget: 70000,
+//     usedBudget: 40000,
+//     remainingBudget: 30000,
+//   },
+//   {
+//     projectName: 'coke',
+//     projectOwner: 'Kate',
+//     budget: 40000,
+//     usedBudget: 30000,
+//     remainingBudget: 10000,
+//   },
+//   {
+//     projectName: 'Marvel',
+//     projectOwner: 'Kate',
+//     budget: 60000,
+//     usedBudget: 10000,
+//     remainingBudget: 50000,
+//   },
+//   {
+//     projectName: 'Power',
+//     projectOwner: 'Kate',
+//     budget: 90000,
+//     usedBudget: 90000,
+//     remainingBudget: 0,
+//   },
+// ]
 function AllProjects() {
   const { data: projects, isLoading, isError } = useGetAllProjects()
 
@@ -62,8 +62,8 @@ function AllProjects() {
     const sorted = [...sortedData].sort(
       (a, b) =>
         isSorted
-          ? a.remainingBudget - b.remainingBudget // Ascending order if already sorted
-          : b.remainingBudget - a.remainingBudget // Descending order
+          ? (a.remainingBudget ?? 0) - (b.remainingBudget ?? 0) // Ascending order if already sorted
+          : (b.remainingBudget ?? 0) - (a.remainingBudget ?? 0) // Descending order
     )
     setSortedData(sorted)
     setIsSorted(!isSorted)
