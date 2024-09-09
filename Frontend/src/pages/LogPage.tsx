@@ -13,9 +13,9 @@ function LogPage() {
     console.log('allprojects')
   }
   return (
-    <div className="flex flex-grow flex-col">
+    <div className="flex flex-grow flex-col flex-wrap content-center">
       <h1>LogPage</h1>
-      <form>
+      <form className="flex flex-col">
         <label htmlFor="dropwdown"> PROJECT:</label>
         <select name="dropdown" id="dropdown">
           <option value="">--Select an option--</option>
@@ -25,6 +25,7 @@ function LogPage() {
             </option>
           ))}
         </select>
+        <input type="text" placeholder="Hours" />
       </form>
       <Button onClick={(e) => handleClick(e)} className="w-1/6 ">
         View All
