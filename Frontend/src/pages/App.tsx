@@ -3,7 +3,6 @@ import React from 'react'
 import '../App.css'
 import Button from '../components/Button'
 import { useNavigate } from 'react-router-dom'
-import { getAllProjects } from '../api/apiClient'
 
 function App() {
   const navigate = useNavigate()

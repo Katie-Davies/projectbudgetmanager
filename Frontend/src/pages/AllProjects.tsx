@@ -1,4 +1,7 @@
 import { useState } from 'react'
+import useGetAllProjects from '../hooks/useGetAllProjects'
+import { IProject } from '../../models/models'
+
 const data = [
   {
     projectName: 'Disney',
@@ -37,8 +40,23 @@ const data = [
   },
 ]
 function AllProjects() {
-  const [sortedData, setSortedData] = useState(data)
+  const { data: projects, isLoading, isError } = useGetAllProjects()
+
+  const [sortedData, setSortedData] = useState<IProject[]>([])
   const [isSorted, setIsSorted] = useState(false)
+
+  useEffect(() => {
+    if (projects) {
+      setSortedData(projects)
+    }
+  }, [projects])
+
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+  if (isError) {
+    return <div>Error fetching data</div>
+  }
 
   const handleSort = () => {
     const sorted = [...sortedData].sort(
@@ -51,6 +69,7 @@ function AllProjects() {
     setIsSorted(!isSorted)
     console.log('sorted')
   }
+
   return (
     <div className="flex justify-start flex-col content-center flex-wrap flex-grow">
       <h1 className="text-4xl m-5 text-center">All Projects</h1>
