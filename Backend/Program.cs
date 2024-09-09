@@ -3,7 +3,16 @@ using System.Linq;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Get the connection string from environment variables
+string connection = builder.Configuration.GetConnectionString("DefaultConnection");
+if (string.IsNullOrEmpty(connection))
+{
+  connection = Environment.GetEnvironmentVariable("AZURE_SQL_CONNECTIONSTRING");
+}
 
+// Register the DbContext with the connection string
+builder.Services.AddDbContext<ProjectDbContext>(options =>
+    options.UseSqlServer(connection));
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -17,6 +26,7 @@ builder.Services.AddCors(options =>
     builder.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod();
   });
 });
+
 
 var app = builder.Build();
 
