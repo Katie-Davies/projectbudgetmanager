@@ -2,7 +2,7 @@ function AllProjects() {
   return (
     <div>
       <h1>All Projects</h1>
-      <table>
+      <table className="table-auto">
         <thead>All Projects</thead>
         <tr>
           <td>project name </td>
