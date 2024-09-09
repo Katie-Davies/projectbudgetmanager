@@ -95,20 +95,20 @@ app.MapGet("/projects", () =>
 .WithName("GetProjects")
 .WithOpenApi();
 
-app.MapPost("/projects", (string projectName, string projectOwner, int budget) =>
+app.MapPost("/projects", (Project project) =>
 {
-  var project = new Project
+  var newProject = new Project
 
   {
     ProjectId = projects.Max(x => x.ProjectId) + 1,
-    ProjectName = projectName,
-    ProjectOwner = projectOwner,
-    Budget = budget,
+    ProjectName = project.projectName,
+    ProjectOwner = project.projectOwner,
+    Budget = project.budget,
     UsedBudget = 0
 
   };
 
-  projects.Add(project);
+  projects.Add(newProject);
   return Results.Created($"/projects/{project.ProjectId}", project);
 })
 .WithName("CreateProject");
