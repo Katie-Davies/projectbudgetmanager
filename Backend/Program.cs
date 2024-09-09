@@ -1,11 +1,19 @@
 using backend.Models;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using DotNetEnv;
+
+
+// Load environment variables from .env file
+DotNetEnv.Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Get the connection string from environment variables
-string connection = builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING");
+var password = Environment.GetEnvironmentVariable("PASSWORD");
+Console.WriteLine(password);
+
+string connection = builder.Configuration.GetConnectionString($"Server=tcp:tracker-app-srv.database.windows.net,1433;Initial Catalog=trackerdb;Persist Security Info=False;User ID=sqladmin;Password={password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
 
 // Register the DbContext with the connection string
 builder.Services.AddDbContext<ProjectDbContext>(options =>
@@ -135,6 +143,19 @@ app.MapPut("/projects/{projectId}", (Project updatedProject) =>
 
   return Results.Ok(project);
 }).WithName("UpdateProject");
+
+app.MapGet("/test-connection", async (ProjectDbContext DbContext) =>
+{
+  try
+  {
+    var projectCount = await DbContext.Projects.CountAsync();
+    return Results.Ok($"Connection to database is successful. There are {projectCount} projects in the database.");
+  }
+  catch (Exception ex)
+  {
+    return Results.BadRequest($"Error: {ex.Message}");
+  }
+}).WithName("TestConnection").WithOpenApi();
 
 app.Run();
 
