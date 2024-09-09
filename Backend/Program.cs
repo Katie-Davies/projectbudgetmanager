@@ -100,7 +100,7 @@ app.MapPost("/projects", (string projectName, string projectOwner, int budget, i
 })
 .WithName("CreateProject");
 
-app.MapPut("/projects/{projectName}", (int projectId, string projectName, string projectOwner, int budget, int usedBudget, int remainingBudget) =>
+app.MapPut("/projects/{projectName}", (int projectId, string projectName, string projectOwner, int budget, int usedBudget) =>
 {
   var project = projects.FirstOrDefault(x => x.ProjectId == projectId);
   if (project == null)
