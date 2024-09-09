@@ -74,6 +74,22 @@ app.MapGet("/projects", () =>
 .WithName("GetProjects")
 .WithOpenApi();
 
+app.MapPost("/projects", (string projectName, string projectOwner, int budget, int usedBudget, int remainingBudget) =>
+{
+  var project = new
+  {
+    projectName = projectName,
+    projectOwner = projectOwner,
+    budget = budget,
+    usedBudget = usedBudget,
+    remainingBudget = remainingBudget
+  };
+
+  projects = projects.Append(project).ToArray();
+  return Results.Created($"/projects/{projectName}", project);
+})
+.WithName("CreateProject");
+
 app.Run();
 
 
