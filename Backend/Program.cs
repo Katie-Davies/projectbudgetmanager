@@ -20,7 +20,7 @@ if (app.Environment.IsDevelopment())
 // app.UseHttpsRedirection();
 
 
-var projects = new[]
+var projects = new List<Project>
 {
  new Project
     {ProjectId = 10,
@@ -84,7 +84,8 @@ app.MapGet("/projects", () =>
 
 app.MapPost("/projects", (string projectName, string projectOwner, int budget, int usedBudget, int remainingBudget) =>
 {
-  var project = new
+  var project = new Project
+
   {
     ProjectId = projects.Max(x => x.ProjectId) + 1,
     ProjectName = projectName,
@@ -94,8 +95,8 @@ app.MapPost("/projects", (string projectName, string projectOwner, int budget, i
 
   };
 
-  projects = projects.Append(project).ToArray();
-  return Results.Created($"/projects/{projectName}", project);
+  projects.Add(project);
+  return Results.Created($"/projects/{project.ProjectId}", project);
 })
 .WithName("CreateProject");
 
@@ -106,11 +107,11 @@ app.MapPut("/projects/{projectName}", (int projectId, string projectName, string
   {
     return Results.NotFound();
   }
+  project.ProjectName = projectName;
+  project.ProjectOwner = projectOwner;
+  project.Budget = budget;
+  project.UsedBudget = usedBudget;
 
-  project.projectOwner = projectOwner;
-  project.budget = budget;
-  project.usedBudget = usedBudget;
-  project.remainingBudget = remainingBudget;
 
   return Results.Ok(project);
 }).WithName("UpdateProject");
