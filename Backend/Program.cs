@@ -10,14 +10,14 @@ DotNetEnv.Env.Load();
 var builder = WebApplication.CreateBuilder(args);
 
 // Get the connection string from environment variables
-var DATABASE_CONNECTION_STRING = Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING");
-// if (password == null)
-// {
-//   throw new InvalidOperationException("The environment variable PASSWORD is not set.");
-// }
+var connection = Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING");
+if (string.IsNullOrEmpty(connection))
+{
+  throw new InvalidOperationException("The environment variable DATABASE_CONNECTION_STRING is not set.");
+}
 
 
-string connection = builder.Configuration.GetConnectionString($"{DATABASE_CONNECTION_STRING}");
+// string connection = builder.Configuration.GetConnectionString($"{DATABASE_CONNECTION_STRING}");
 
 // Register the DbContext with the connection string
 builder.Services.AddDbContext<ProjectDbContext>(options =>
