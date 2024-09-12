@@ -61,7 +61,7 @@ if (app.Environment.IsDevelopment())
 
 // app.UseHttpsRedirection();
 
-
+// in memory projects
 var projects = new List<Project>
 {
  new Project
@@ -109,8 +109,9 @@ var projects = new List<Project>
 
     }};
 
-app.MapGet("/projects", () =>
+app.MapGet("/projects", async (ProjectDbContext dbContext) =>
 {
+  var projects = dbContext.Projects.ToListAsync();
   if (projects == null)
   {
     return Results.NotFound();
@@ -124,20 +125,22 @@ app.MapGet("/projects", () =>
 .WithName("GetProjects")
 .WithOpenApi();
 
-app.MapPost("/projects", (Project project) =>
+app.MapPost("/projects", async (ProjectsDbContext dbContext, Project project) =>
 {
-  var newProject = new Project
+  // var newProject = new Project
 
-  {
-    ProjectId = projects.Max(x => x.ProjectId) + 1,
-    ProjectName = project.ProjectName,
-    ProjectOwner = project.ProjectOwner,
-    Budget = project.Budget,
-    UsedBudget = 0
+  // {
+  //   ProjectId = projects.Max(x => x.ProjectId) + 1,
+  //   ProjectName = project.ProjectName,
+  //   ProjectOwner = project.ProjectOwner,
+  //   Budget = project.Budget,
+  //   UsedBudget = 0
 
-  };
+  // };
 
-  projects.Add(newProject);
+  // projects.Add(newProject);
+  await dbContext.Projects.AddAsync(project);
+  await dbContext.SaveChangesAsync();
   return Results.Created($"/projects/{project.ProjectId}", project);
 })
 .WithName("CreateProject");
