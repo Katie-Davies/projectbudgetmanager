@@ -145,17 +145,17 @@ app.MapPost("/projects", async (ProjectsDbContext dbContext, Project project) =>
 })
 .WithName("CreateProject");
 
-app.MapPut("/projects/{projectId}", (Project updatedProject) =>
+app.MapPut("/projects/{projectId}", (ProjectDbContext dbContext, int projectId, Project updatedProject) =>
 {
-  var project = projects.FirstOrDefault(x => x.ProjectId == updatedProject.ProjectId);
+  var project = dbContext.Projects.FindAsync(projectId);
   if (project == null)
   {
     return Results.NotFound();
   }
 
-  project.ProjectName = updatedProject.ProjectName;
-  project.ProjectOwner = updatedProject.ProjectOwner;
-  project.Budget = updatedProject.Budget;
+  // project.ProjectName = updatedProject.ProjectName;
+  // project.ProjectOwner = updatedProject.ProjectOwner;
+  // project.Budget = updatedProject.Budget;
   project.UsedBudget = updatedProject.UsedBudget;
 
   return Results.Ok(project);
