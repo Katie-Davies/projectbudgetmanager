@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/katiedavies/webDevelopment/PersonalProjects/projectbudgetmanager/Backend/Backend.csproj": {}
+    "/home/sukhjeet/development/projectbudgetmanager/Backend/Backend.csproj": {}
   },
   "projects": {
-    "/Users/katiedavies/webDevelopment/PersonalProjects/projectbudgetmanager/Backend/Backend.csproj": {
+    "/home/sukhjeet/development/projectbudgetmanager/Backend/Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/katiedavies/webDevelopment/PersonalProjects/projectbudgetmanager/Backend/Backend.csproj",
+        "projectUniqueName": "/home/sukhjeet/development/projectbudgetmanager/Backend/Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "/Users/katiedavies/webDevelopment/PersonalProjects/projectbudgetmanager/Backend/Backend.csproj",
-        "packagesPath": "/Users/katiedavies/.nuget/packages/",
-        "outputPath": "/Users/katiedavies/webDevelopment/PersonalProjects/projectbudgetmanager/Backend/obj/",
+        "projectPath": "/home/sukhjeet/development/projectbudgetmanager/Backend/Backend.csproj",
+        "packagesPath": "/home/sukhjeet/.nuget/packages/",
+        "outputPath": "/home/sukhjeet/development/projectbudgetmanager/Backend/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/katiedavies/.nuget/NuGet/NuGet.Config"
+          "/home/sukhjeet/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -32,11 +32,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -93,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.108/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
