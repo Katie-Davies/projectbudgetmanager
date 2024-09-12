@@ -1,5 +1,5 @@
 import request from 'superagent'
-import { IProject } from '../../models/models'
+import { IProject, IUpdateProject } from '../../models/models'
 
 const api = 'http://localhost:5143'
 
@@ -12,7 +12,7 @@ export async function createNewProject(project: IProject) {
   return await request.post(`${api}/projects`).send(project)
 }
 
-export async function updateProject(project: IProject) {
+export async function updateProject(project: IUpdateProject) {
   const updatedProject = await request
     .put(`${api}/projects/${project.projectId}`)
     .send(project)
