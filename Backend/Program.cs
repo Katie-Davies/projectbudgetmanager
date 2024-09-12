@@ -10,10 +10,14 @@ DotNetEnv.Env.Load();
 var builder = WebApplication.CreateBuilder(args);
 
 // Get the connection string from environment variables
-var password = Environment.GetEnvironmentVariable("PASSWORD");
-Console.WriteLine(password);
+var connection = Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING");
+if (string.IsNullOrEmpty(connection))
+{
+  throw new InvalidOperationException("The environment variable DATABASE_CONNECTION_STRING is not set.");
+}
 
-string connection = builder.Configuration.GetConnectionString($"Server=tcp:tracker-app-srv.database.windows.net,1433;Initial Catalog=trackerdb;Persist Security Info=False;User ID=sqladmin;Password={password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+
+// string connection = builder.Configuration.GetConnectionString($"{DATABASE_CONNECTION_STRING}");
 
 // Register the DbContext with the connection string
 builder.Services.AddDbContext<ProjectDbContext>(options =>
