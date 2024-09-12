@@ -111,7 +111,7 @@ var projects = new List<Project>
 
 app.MapGet("/projects", async (ProjectDbContext dbContext) =>
 {
-  var projects = dbContext.Projects.ToListAsync();
+  var projects = await dbContext.Projects.ToListAsync();
   if (projects == null)
   {
     return Results.NotFound();
@@ -125,7 +125,7 @@ app.MapGet("/projects", async (ProjectDbContext dbContext) =>
 .WithName("GetProjects")
 .WithOpenApi();
 
-app.MapPost("/projects", async (ProjectsDbContext dbContext, Project project) =>
+app.MapPost("/projects", async (ProjectDbContext dbContext, Project project) =>
 {
   // var newProject = new Project
 
@@ -145,9 +145,9 @@ app.MapPost("/projects", async (ProjectsDbContext dbContext, Project project) =>
 })
 .WithName("CreateProject");
 
-app.MapPut("/projects/{projectId}", (ProjectDbContext dbContext, int projectId, Project updatedProject) =>
+app.MapPut("/projects/{projectId}", async (ProjectDbContext dbContext, int projectId, Project updatedProject) =>
 {
-  var project = dbContext.Projects.FindAsync(projectId);
+  var project = await dbContext.Projects.FindAsync(projectId);
   if (project == null)
   {
     return Results.NotFound();
