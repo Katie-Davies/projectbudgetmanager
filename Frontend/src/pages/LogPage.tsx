@@ -17,6 +17,8 @@ function LogPage() {
 
   function handleSubmit(): void {
     console.log(login, hours)
+    setLogin('')
+    setHours(0)
   }
 
   return (
