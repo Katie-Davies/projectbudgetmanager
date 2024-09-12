@@ -11,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Get the connection string from environment variables
 var connection = Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING");
+Console.WriteLine($"Connection string: {connection}");
 if (string.IsNullOrEmpty(connection))
 {
   throw new InvalidOperationException("The environment variable DATABASE_CONNECTION_STRING is not set.");
@@ -39,6 +40,15 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+
+// Apply database migrations automatically on startup
+using (var scope = app.Services.CreateScope())
+{
+  var dbContext = scope.ServiceProvider.GetRequiredService<ProjectDbContext>();
+
+  // Apply pending migrations
+  dbContext.Database.Migrate();
+}
 //use CORS policy
 app.UseCors("AllowReactApp");
 
@@ -51,7 +61,7 @@ if (app.Environment.IsDevelopment())
 
 // app.UseHttpsRedirection();
 
-
+// in memory projects
 var projects = new List<Project>
 {
  new Project
@@ -99,8 +109,9 @@ var projects = new List<Project>
 
     }};
 
-app.MapGet("/projects", () =>
+app.MapGet("/projects", async (ProjectDbContext dbContext) =>
 {
+  var projects = await dbContext.Projects.ToListAsync();
   if (projects == null)
   {
     return Results.NotFound();
@@ -114,35 +125,37 @@ app.MapGet("/projects", () =>
 .WithName("GetProjects")
 .WithOpenApi();
 
-app.MapPost("/projects", (Project project) =>
+app.MapPost("/projects", async (ProjectDbContext dbContext, Project project) =>
 {
-  var newProject = new Project
+  // var newProject = new Project
 
-  {
-    ProjectId = projects.Max(x => x.ProjectId) + 1,
-    ProjectName = project.ProjectName,
-    ProjectOwner = project.ProjectOwner,
-    Budget = project.Budget,
-    UsedBudget = 0
+  // {
+  //   ProjectId = projects.Max(x => x.ProjectId) + 1,
+  //   ProjectName = project.ProjectName,
+  //   ProjectOwner = project.ProjectOwner,
+  //   Budget = project.Budget,
+  //   UsedBudget = 0
 
-  };
+  // };
 
-  projects.Add(newProject);
+  // projects.Add(newProject);
+  await dbContext.Projects.AddAsync(project);
+  await dbContext.SaveChangesAsync();
   return Results.Created($"/projects/{project.ProjectId}", project);
 })
 .WithName("CreateProject");
 
-app.MapPut("/projects/{projectId}", (Project updatedProject) =>
+app.MapPut("/projects/{projectId}", async (ProjectDbContext dbContext, int projectId, Project updatedProject) =>
 {
-  var project = projects.FirstOrDefault(x => x.ProjectId == updatedProject.ProjectId);
+  var project = await dbContext.Projects.FindAsync(projectId);
   if (project == null)
   {
     return Results.NotFound();
   }
 
-  project.ProjectName = updatedProject.ProjectName;
-  project.ProjectOwner = updatedProject.ProjectOwner;
-  project.Budget = updatedProject.Budget;
+  // project.ProjectName = updatedProject.ProjectName;
+  // project.ProjectOwner = updatedProject.ProjectOwner;
+  // project.Budget = updatedProject.Budget;
   project.UsedBudget = updatedProject.UsedBudget;
 
   return Results.Ok(project);
