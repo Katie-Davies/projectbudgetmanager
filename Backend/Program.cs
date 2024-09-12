@@ -11,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Get the connection string from environment variables
 var connection = Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING");
+Console.WriteLine($"Connection string: {connection}");
 if (string.IsNullOrEmpty(connection))
 {
   throw new InvalidOperationException("The environment variable DATABASE_CONNECTION_STRING is not set.");
@@ -39,6 +40,15 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+
+// Apply database migrations automatically on startup
+using (var scope = app.Services.CreateScope())
+{
+  var dbContext = scope.ServiceProvider.GetRequiredService<ProjectDbContext>();
+
+  // Apply pending migrations
+  dbContext.Database.Migrate();
+}
 //use CORS policy
 app.UseCors("AllowReactApp");
 
