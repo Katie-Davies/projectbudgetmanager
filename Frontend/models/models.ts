@@ -6,3 +6,8 @@ export interface IProject {
   usedBudget?: number
   remainingBudget?: number
 }
+
+export interface IUpdateProject {
+  projectId: number
+  usedBudget: number
+}
