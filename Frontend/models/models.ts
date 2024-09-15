@@ -4,6 +4,7 @@ export interface IProject {
   projectOwner: string
   budget: number
   usedBudget?: number
+  hourlyRate: number
   remainingBudget?: number
 }
 
