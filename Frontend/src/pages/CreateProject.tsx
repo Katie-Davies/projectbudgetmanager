@@ -1,5 +1,5 @@
 import Button from '../components/Button'
-import { createNewProject } from '../api/apiClient'
+
 import useCreateProject from '../hooks/useCreateProject'
 
 function CreateProject() {
