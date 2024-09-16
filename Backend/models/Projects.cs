@@ -7,6 +7,7 @@ namespace backend.Models
     public string ProjectOwner { get; set; } = string.Empty;
     public decimal Budget { get; set; }
     public decimal UsedBudget { get; set; } = 0;
+    public decimal HourlyRate { get; set; }
     public decimal? RemainingBudget => Budget - UsedBudget;
   }
 }
