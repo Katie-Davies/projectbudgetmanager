@@ -1,13 +1,16 @@
 import Button from '../components/Button'
 import { createNewProject } from '../api/apiClient'
+import useCreateProject from '../hooks/useCreateProject'
 
 function CreateProject() {
-  const project = {
-    projectName: 'Project 2',
-    projectOwner: 'Owner 2',
-    budget: 10000,
-  }
-  createNewProject(project)
+  // const project = {
+  //   projectName: 'Project 3',
+  //   projectOwner: 'Bob',
+  //   budget: 10000,
+  //   hourlyRate: 100,
+  // }
+  // const create = useCreateProject()
+  // create.mutate(project)
 
   return (
     <div className="flex flex-grow content-center  flex-col flex-wrap">
