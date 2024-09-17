@@ -152,11 +152,17 @@ app.MapPut("/projects/{projectId}", async (ProjectDbContext dbContext, Project u
   {
     return Results.NotFound();
   }
+  // Calculate the total used budget after adding the new amount
+  var newUsedBudget = updatedProject.UsedBudget + project.UsedBudget;
 
-  // project.ProjectName = updatedProject.ProjectName;
-  // project.ProjectOwner = updatedProject.ProjectOwner;
-  // project.Budget = updatedProject.Budget;
-  project.UsedBudget = updatedProject.UsedBudget + project.UsedBudget;
+  // Check if the new used budget exceeds the total budget
+  if (newUsedBudget > project.Budget)
+  {
+    return Results.BadRequest("Error: Not enough budget available.");
+  }
+
+  // Update the used budget and save changes
+  project.UsedBudget = newUsedBudget;
   await dbContext.SaveChangesAsync();
   return Results.Ok(project);
 }).WithName("UpdateProject");
