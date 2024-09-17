@@ -4,14 +4,14 @@ import useGetAllProjects from '../hooks/useGetAllProjects'
 
 function LogPage() {
   const { data, isLoading, isError } = useGetAllProjects()
-  const [login, setLogin] = useState('')
+  const [project, setProject] = useState('')
   const [hours, setHours] = useState(0)
 
   if (isLoading) return <p>Loading...</p>
   if (isError) return <p>Error</p>
 
   function selectUserLogin(e: ChangeEvent<HTMLSelectElement>): void {
-    setLogin(e.target.value)
+    setProject(e.target.value)
   }
 
   function handleChange(e: ChangeEvent<HTMLInputElement>): void {
@@ -19,8 +19,8 @@ function LogPage() {
   }
 
   function handleSubmit(): void {
-    console.log(login, hours)
-    setLogin('')
+    console.log(project, hours)
+    setProject('')
     setHours(0)
   }
 
@@ -34,7 +34,7 @@ function LogPage() {
         <select
           name="dropdown"
           id="dropdown"
-          value={login}
+          value={project}
           className="border-solid border-2 border-gray-300 h-10 m-3"
           onChange={selectUserLogin}
         >
