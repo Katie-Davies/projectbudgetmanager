@@ -7,6 +7,7 @@ function CreateProject() {
   const [name, setName] = useState('')
   const [owner, setOwner] = useState('')
   const [budget, setBudget] = useState(0)
+  const [rate, setRate] = useState(0)
 
   function handleChange(e: ChangeEvent<HTMLInputElement>): void {
     const elName = e.target.name
@@ -14,6 +15,7 @@ function CreateProject() {
     if (elName === 'name') setName(elValue)
     if (elName === 'owner') setOwner(elValue)
     if (elName === 'budget') setBudget(Number(elValue))
+    if (elName === 'rate') setRate(Number(elValue))
   }
 
   function handleSubmit() {
@@ -21,14 +23,15 @@ function CreateProject() {
       projectName: name,
       projectOwner: owner,
       budget: budget,
+      hourlyRate: rate,
     }
 
     createNewProject(project)
     setName('')
     setOwner('')
     setBudget(0)
+    setRate(0)
   }
-
 
   return (
     <div className="flex flex-grow content-center  flex-col flex-wrap">
@@ -66,6 +69,14 @@ function CreateProject() {
             onChange={handleChange}
             type="text"
             placeholder="Enter Budget"
+            className="m-3 border-solid border-2 border-gray-300 focus:outline-blue-500 h-10 placeholder:p-3"
+          />
+          <input
+            name="rate"
+            value={rate}
+            onChange={handleChange}
+            type="text"
+            placeholder="Enter Hourly Rate"
             className="m-3 border-solid border-2 border-gray-300 focus:outline-blue-500 h-10 placeholder:p-3"
           />
         </form>
