@@ -3,13 +3,14 @@ import Button from '../components/Button'
 import { createNewProject } from '../api/apiClient'
 import { ChangeEvent, useState } from 'react'
 import useCreateProject from '../hooks/useCreateProject'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function CreateProject() {
   const [name, setName] = useState('')
   const [owner, setOwner] = useState('')
   const [budget, setBudget] = useState(0)
   const [rate, setRate] = useState(0)
+  const navigate = useNavigate()
 
   function handleChange(e: ChangeEvent<HTMLInputElement>): void {
     const elName = e.target.name
@@ -35,6 +36,9 @@ function CreateProject() {
     setOwner('')
     setBudget(0)
     setRate(0)
+  }
+  const handleNavigate = (e: React.MouseEvent<HTMLButtonElement>) => {
+    navigate('/allprojects')
   }
 
   return (
@@ -89,6 +93,9 @@ function CreateProject() {
             CREATE
           </Button>
         </div>
+        <Button onClick={(e) => handleNavigate(e)} className="m-3 ">
+          Report
+        </Button>
       </div>
     </div>
   )
