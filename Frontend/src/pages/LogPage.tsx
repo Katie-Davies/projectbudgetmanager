@@ -6,6 +6,7 @@ function LogPage() {
   const { data, isLoading, isError } = useGetAllProjects()
   const [project, setProject] = useState('')
   const [hours, setHours] = useState(0)
+  const [errorMessage, setErrorMessage] = useState('')
 
   if (isLoading) return <p>Loading...</p>
   if (isError) return <p>Error</p>
@@ -19,9 +20,17 @@ function LogPage() {
   }
 
   function handleSubmit(): void {
-    console.log(project, hours)
+    if (isNaN(Number(hours))) {
+      setErrorMessage('Please enter a valid number')
+      // alert('Please enter a valid number')
+      setHours(0)
+      return
+    } else {
+      console.log(project, hours)
+    }
     setProject('')
     setHours(0)
+    setErrorMessage('')
   }
 
   return (
@@ -55,6 +64,7 @@ function LogPage() {
           onChange={handleChange}
           className="m-3 border-solid border-2 border-gray-300 focus:outline-customBlue h-10 placeholder:p-3"
         />
+        {errorMessage && <p className="text-red-500">{errorMessage}</p>}
       </form>
       <div className="flex justify-center flex-col flex-wrap content-center m-3">
         <Button className="m-4" onClick={handleSubmit}>
