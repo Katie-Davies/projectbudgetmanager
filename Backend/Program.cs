@@ -156,7 +156,7 @@ app.MapPut("/projects/{projectId}", async (ProjectDbContext dbContext, Project u
   // project.ProjectName = updatedProject.ProjectName;
   // project.ProjectOwner = updatedProject.ProjectOwner;
   // project.Budget = updatedProject.Budget;
-  project.UsedBudget = updatedProject.UsedBudget;
+  project.UsedBudget = updatedProject.UsedBudget + project.UsedBudget;
   await dbContext.SaveChangesAsync();
   return Results.Ok(project);
 }).WithName("UpdateProject");
