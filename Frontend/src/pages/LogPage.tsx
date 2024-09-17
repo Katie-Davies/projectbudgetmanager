@@ -12,6 +12,7 @@ function LogPage() {
     projectId: 0,
     usedBudget: 0,
   })
+  const [exceededMessage, setExceededMessage] = useState('')
   const updateProjectMutation = useUpdateProject()
   // const fakeData = { projectId: 13, usedBudget: 900 }
   // updateProject(fakeData)
@@ -49,7 +50,19 @@ function LogPage() {
         setUsedBudget(newUsedBudget)
         console.log(chosenProject.projectId)
         console.log(newUsedBudget)
-        updateProjectMutation.mutate(newUsedBudget)
+        updateProjectMutation.mutate(newUsedBudget, {
+          onError: (error: any) => {
+            // Display error message if budget is exceeded or other issue occurs
+            const errorMessage = error || 'An error occurred.'
+
+            setExceededMessage(errorMessage)
+            console.log(errorMessage)
+            console.log('budget exceeded')
+          },
+          onSuccess: () => {
+            setErrorMessage('') // Clear any error message if successful
+          },
+        })
       }
     }
     setProject('')
@@ -61,6 +74,11 @@ function LogPage() {
   return (
     <div className="flex flex-grow flex-col flex-wrap content-center">
       <h1 className="text-4xl m-5">Log Time</h1>
+      {exceededMessage && (
+        <div className="text-xl text-red-700">
+          Unable to log as Budget has been exceed
+        </div>
+      )}
       <form className="flex flex-col">
         <label htmlFor="dropdown" className="m-3">
           PROJECT NAME:
