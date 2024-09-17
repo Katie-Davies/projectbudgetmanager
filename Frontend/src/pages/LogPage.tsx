@@ -13,9 +13,9 @@ function LogPage() {
     projectId: 0,
     usedBudget: 0,
   })
-  //const updateProject = useUpdateProject()
-  const fakeData = { projectId: 13, usedBudget: 900 }
-  updateProject(fakeData)
+  const updateProjectMutation = useUpdateProject()
+  // const fakeData = { projectId: 13, usedBudget: 900 }
+  // updateProject(fakeData)
 
   if (isLoading) return <p>Loading...</p>
   if (isError) return <p>Error</p>
@@ -46,7 +46,7 @@ function LogPage() {
         setUsedBudget(newUsedBudget)
         console.log(chosenProject.projectId)
         console.log(newUsedBudget)
-        // updateProject.mutate(newUsedBudget)
+        updateProjectMutation.mutate(newUsedBudget)
       }
     }
     setProject('')
