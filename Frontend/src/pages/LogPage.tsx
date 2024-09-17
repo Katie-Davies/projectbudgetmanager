@@ -1,16 +1,21 @@
 import Button from '../components/Button'
 import { ChangeEvent, useState } from 'react'
 import useGetAllProjects from '../hooks/useGetAllProjects'
+import useUpdateProject from '../hooks/useUpdateProject'
+import { updateProject } from '../api/apiClient'
 
 function LogPage() {
   const { data, isLoading, isError } = useGetAllProjects()
   const [project, setProject] = useState('')
   const [hours, setHours] = useState(0)
   const [errorMessage, setErrorMessage] = useState('')
-  const [useddBudget, setUsedBudget] = useState({
+  const [usedBudget, setUsedBudget] = useState({
     projectId: 0,
     usedBudget: 0,
   })
+  //const updateProject = useUpdateProject()
+  const fakeData = { projectId: 13, usedBudget: 900 }
+  updateProject(fakeData)
 
   if (isLoading) return <p>Loading...</p>
   if (isError) return <p>Error</p>
@@ -37,16 +42,16 @@ function LogPage() {
           : 0
         console.log(chosenProject.hourlyRate)
         const projectId = chosenProject?.projectId || 0
-        setUsedBudget({ projectId: projectId, usedBudget: used })
+        const newUsedBudget = { projectId: projectId, usedBudget: used }
+        setUsedBudget(newUsedBudget)
         console.log(chosenProject.projectId)
+        console.log(newUsedBudget)
+        // updateProject.mutate(newUsedBudget)
       }
-
-      console.log(useddBudget)
     }
     setProject('')
     setHours(0)
     setErrorMessage('')
-    setUsedBudget({ projectId: 0, usedBudget: 0 })
   }
 
   return (
