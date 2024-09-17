@@ -2,7 +2,6 @@ import Button from '../components/Button'
 import { ChangeEvent, useState } from 'react'
 import useGetAllProjects from '../hooks/useGetAllProjects'
 import useUpdateProject from '../hooks/useUpdateProject'
-import { updateProject } from '../api/apiClient'
 
 function LogPage() {
   const { data, isLoading, isError } = useGetAllProjects()
@@ -52,6 +51,7 @@ function LogPage() {
     setProject('')
     setHours(0)
     setErrorMessage('')
+    setUsedBudget({ projectId: 0, usedBudget: 0 })
   }
 
   return (
