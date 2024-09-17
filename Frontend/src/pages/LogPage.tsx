@@ -1,10 +1,14 @@
 import Button from '../components/Button'
 import { ChangeEvent, useState } from 'react'
+import useGetAllProjects from '../hooks/useGetAllProjects'
 
 function LogPage() {
-  const fakeData = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+  const { data, isLoading, isError } = useGetAllProjects()
   const [login, setLogin] = useState('')
   const [hours, setHours] = useState(0)
+
+  if (isLoading) return <p>Loading...</p>
+  if (isError) return <p>Error</p>
 
   function selectUserLogin(e: ChangeEvent<HTMLSelectElement>): void {
     setLogin(e.target.value)
@@ -35,9 +39,9 @@ function LogPage() {
           onChange={selectUserLogin}
         >
           <option value="">--Select an option--</option>
-          {fakeData.map((data) => (
-            <option value={data} key={data}>
-              {data}
+          {data?.map((data) => (
+            <option value={data.projectName} key={data.projectId}>
+              {data.projectName}
             </option>
           ))}
         </select>
@@ -56,7 +60,6 @@ function LogPage() {
         <Button className="m-4" onClick={handleSubmit}>
           LOG TIME
         </Button>
-        <p className="text-center">OR</p>
       </div>
     </div>
   )
