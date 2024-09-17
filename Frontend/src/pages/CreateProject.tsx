@@ -3,6 +3,7 @@ import Button from '../components/Button'
 import { createNewProject } from '../api/apiClient'
 import { ChangeEvent, useState } from 'react'
 import useCreateProject from '../hooks/useCreateProject'
+import { Link } from 'react-router-dom'
 
 function CreateProject() {
   const [name, setName] = useState('')
@@ -28,6 +29,8 @@ function CreateProject() {
     }
 
     createProject.mutate(project)
+    alert('Project Created')
+
     setName('')
     setOwner('')
     setBudget(0)
