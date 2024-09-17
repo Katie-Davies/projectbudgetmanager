@@ -68,6 +68,7 @@ function LogPage() {
     setProject('')
     setHours(0)
     setErrorMessage('')
+    setExceededMessage('')
     setUsedBudget({ projectId: 0, usedBudget: 0 })
   }
 
