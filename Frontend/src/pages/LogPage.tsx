@@ -19,8 +19,12 @@ function LogPage() {
   if (isLoading) return <p>Loading...</p>
   if (isError) return <p>Error</p>
 
-  function selectUserLogin(e: ChangeEvent<HTMLSelectElement>): void {
+  function selectProject(e: ChangeEvent<HTMLSelectElement>): void {
     setProject(e.target.value)
+    const chosenProject = data?.find((data) => data.projectName === project)
+    if (chosenProject?.remainingBudget === 0) {
+      alert('No budget left')
+    }
   }
 
   function handleChange(e: ChangeEvent<HTMLInputElement>): void {
@@ -66,7 +70,7 @@ function LogPage() {
           id="dropdown"
           value={project}
           className="border-solid border-2 border-gray-300 h-10 m-3"
-          onChange={selectUserLogin}
+          onChange={selectProject}
         >
           <option value="">--Select an option--</option>
           {data?.map((data) => (
