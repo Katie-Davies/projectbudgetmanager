@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Get the connection string from environment variables
 var connection = Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING");
-Console.WriteLine($"Connection string: {connection}");
+
 if (string.IsNullOrEmpty(connection))
 {
   throw new InvalidOperationException("The environment variable DATABASE_CONNECTION_STRING is not set.");

@@ -7,6 +7,10 @@ function LogPage() {
   const [project, setProject] = useState('')
   const [hours, setHours] = useState(0)
   const [errorMessage, setErrorMessage] = useState('')
+  const [useddBudget, setUsedBudget] = useState({
+    projectId: 0,
+    usedBudget: 0,
+  })
 
   if (isLoading) return <p>Loading...</p>
   if (isError) return <p>Error</p>
@@ -22,11 +26,20 @@ function LogPage() {
   function handleSubmit(): void {
     if (isNaN(Number(hours))) {
       setErrorMessage('Please enter a valid number')
-      // alert('Please enter a valid number')
       setHours(0)
       return
     } else {
-      console.log(project, hours)
+      const chosenProject = data?.find((data) => data.projectName === project)
+      console.log(chosenProject)
+      if (chosenProject) {
+        const used = chosenProject?.hourlyRate
+          ? chosenProject.hourlyRate * hours
+          : 0
+        const projectId = chosenProject?.projectId || 0
+        setUsedBudget({ projectId, usedBudget: used })
+      }
+
+      console.log(useddBudget)
     }
     setProject('')
     setHours(0)
