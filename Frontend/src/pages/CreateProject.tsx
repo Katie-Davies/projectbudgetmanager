@@ -2,6 +2,7 @@ import Button from '../components/Button'
 
 import { createNewProject } from '../api/apiClient'
 import { ChangeEvent, useState } from 'react'
+import useCreateProject from '../hooks/useCreateProject'
 
 function CreateProject() {
   const [name, setName] = useState('')
@@ -17,7 +18,7 @@ function CreateProject() {
     if (elName === 'budget') setBudget(Number(elValue))
     if (elName === 'rate') setRate(Number(elValue))
   }
-
+  const createProject = useCreateProject()
   function handleSubmit() {
     const project = {
       projectName: name,
@@ -26,7 +27,7 @@ function CreateProject() {
       hourlyRate: rate,
     }
 
-    createNewProject(project)
+    createProject.mutate(project)
     setName('')
     setOwner('')
     setBudget(0)
