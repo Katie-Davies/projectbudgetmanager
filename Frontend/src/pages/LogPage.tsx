@@ -35,8 +35,10 @@ function LogPage() {
         const used = chosenProject?.hourlyRate
           ? chosenProject.hourlyRate * hours
           : 0
+        console.log(chosenProject.hourlyRate)
         const projectId = chosenProject?.projectId || 0
-        setUsedBudget({ projectId, usedBudget: used })
+        setUsedBudget({ projectId: projectId, usedBudget: used })
+        console.log(chosenProject.projectId)
       }
 
       console.log(useddBudget)
