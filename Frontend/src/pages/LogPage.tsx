@@ -65,6 +65,7 @@ function LogPage() {
         })
       }
     }
+    alert('Time Logged')
     setProject('')
     setHours(0)
     setErrorMessage('')
