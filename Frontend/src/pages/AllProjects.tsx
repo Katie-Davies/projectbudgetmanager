@@ -58,6 +58,9 @@ function AllProjects() {
               USED
             </th>
             <th className="border border-slate-300 p-3 bg-customBlue text-white">
+              HOURLY RATE
+            </th>
+            <th className="border border-slate-300 p-3 bg-customBlue text-white">
               REMAINING
             </th>
           </tr>
@@ -77,6 +80,9 @@ function AllProjects() {
                 </td>
                 <td className="border border-slate-300 p-2 text-center">
                   ${project.usedBudget}
+                </td>
+                <td className="border border-slate-300 p-2 text-center">
+                  ${project.hourlyRate}
                 </td>
                 <td
                   className={`border border-slate-300  p-2 text-center ${
