@@ -9,6 +9,13 @@ function useUpdateProject() {
     onSuccess: () => {
       client.invalidateQueries({ queryKey: ['projects'] })
     },
+    onError: (error: any) => {
+      // Handle error in case of budget exceeding or any other issues
+      if (error.response?.status === 400) {
+        return error.response?.data?.message || 'Budget limit exceeded.'
+      }
+      return 'An error occurred.'
+    },
   })
 }
 

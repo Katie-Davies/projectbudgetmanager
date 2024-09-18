@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Get the connection string from environment variables
 var connection = Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING");
-Console.WriteLine($"Connection string: {connection}");
+
 if (string.IsNullOrEmpty(connection))
 {
   throw new InvalidOperationException("The environment variable DATABASE_CONNECTION_STRING is not set.");
@@ -145,19 +145,25 @@ app.MapPost("/projects", async (ProjectDbContext dbContext, Project project) =>
 })
 .WithName("CreateProject");
 
-app.MapPut("/projects/{projectId}", async (ProjectDbContext dbContext, int projectId, Project updatedProject) =>
+app.MapPut("/projects/{projectId}", async (ProjectDbContext dbContext, Project updatedProject) =>
 {
-  var project = await dbContext.Projects.FindAsync(projectId);
+  var project = await dbContext.Projects.FindAsync(updatedProject.ProjectId);
   if (project == null)
   {
     return Results.NotFound();
   }
+  // Calculate the total used budget after adding the new amount
+  var newUsedBudget = updatedProject.UsedBudget + project.UsedBudget;
 
-  // project.ProjectName = updatedProject.ProjectName;
-  // project.ProjectOwner = updatedProject.ProjectOwner;
-  // project.Budget = updatedProject.Budget;
-  project.UsedBudget = updatedProject.UsedBudget;
+  // Check if the new used budget exceeds the total budget
+  if (newUsedBudget > project.Budget)
+  {
+    return Results.BadRequest("Error: Not enough budget available.");
+  }
 
+  // Update the used budget and save changes
+  project.UsedBudget = newUsedBudget;
+  await dbContext.SaveChangesAsync();
   return Results.Ok(project);
 }).WithName("UpdateProject");
 
