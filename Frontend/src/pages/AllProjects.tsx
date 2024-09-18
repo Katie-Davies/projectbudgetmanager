@@ -42,7 +42,7 @@ function AllProjects() {
       >
         Order by remaining Budget
       </button>
-      <table className="table-auto border-collapse border border-slate-400 ">
+      <table className="table-auto border-collapse border border-slate-400 m-5">
         <thead>
           <tr>
             <th className="border border-slate-300 bg-customBlue text-white p-3">
