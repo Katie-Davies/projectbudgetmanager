@@ -1,16 +1,21 @@
 import Button from '../components/Button'
 
-import { createNewProject } from '../api/apiClient'
 import { ChangeEvent, useState } from 'react'
 import useCreateProject from '../hooks/useCreateProject'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import useGetAllProjects from '../hooks/useGetAllProjects'
 
 function CreateProject() {
+  const { data, isLoading, isError } = useGetAllProjects()
+  const createProject = useCreateProject()
   const [name, setName] = useState('')
   const [owner, setOwner] = useState('')
   const [budget, setBudget] = useState(0)
   const [rate, setRate] = useState(0)
   const navigate = useNavigate()
+
+  if (isLoading) return <p>Loading...</p>
+  if (isError) return <p>Error</p>
 
   function handleChange(e: ChangeEvent<HTMLInputElement>): void {
     const elName = e.target.name
@@ -20,8 +25,14 @@ function CreateProject() {
     if (elName === 'budget') setBudget(Number(elValue))
     if (elName === 'rate') setRate(Number(elValue))
   }
-  const createProject = useCreateProject()
+
   function handleSubmit() {
+    const nameCheck = data?.find((data) => data.projectName === name)
+    if (nameCheck) {
+      alert('Project name already exists')
+      setName('')
+      return
+    }
     const project = {
       projectName: name,
       projectOwner: owner,
