@@ -24,7 +24,7 @@ function LogPage() {
     setProject(e.target.value)
     const chosenProject = data?.find((data) => data.projectName === project)
     if (chosenProject?.remainingBudget === 0) {
-      alert('No budget left')
+      setExceededMessage('No budget left')
     }
   }
 
@@ -60,12 +60,13 @@ function LogPage() {
             console.log('budget exceeded')
           },
           onSuccess: () => {
-            setErrorMessage('') // Clear any error message if successful
+            setErrorMessage('')
+            alert('Time Logged') // Clear any error message if successful
           },
         })
       }
     }
-    alert('Time Logged')
+
     setProject('')
     setHours(0)
     setErrorMessage('')
