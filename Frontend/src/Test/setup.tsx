@@ -3,7 +3,12 @@ import { beforeEach, expect } from 'vitest'
 import * as matchers from '@testing-library/jest-dom/matchers'
 import '@testing-library/jest-dom/vitest'
 
-import { createMemoryRouter, RouterProvider } from 'react-router-dom'
+import {
+  createMemoryRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from 'react-router-dom'
 import userEvent from '@testing-library/user-event'
 import routes from '../routes'
 
@@ -12,22 +17,40 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 beforeEach(cleanup)
 expect.extend(matchers)
 
-export function renderApp(location: string) {
+export function renderComponent(component: JSX.Element) {
   const user = userEvent.setup()
-  const router = createMemoryRouter(routes, { initialEntries: [location] })
+  return { user, ...render(component) }
+}
 
+export function renderWithRouter(location = '/') {
+  const router = createMemoryRouter(routes, { initialEntries: [location] })
+  userEvent.setup()
+  return render(<RouterProvider router={router} />)
+}
+
+export function renderWithQuery(component: JSX.Element) {
+  const router = createMemoryRouter(
+    createRoutesFromElements(<Route path="/" element={component} />),
+    {
+      initialEntries: ['/'],
+    }
+  )
+
+  const user = userEvent.setup()
   const queryClient = new QueryClient({
     defaultOptions: {
-      queries: {
-        retry: false,
-      },
+      // NOTE: if we don't set this, then react-query will
+      // retry requests during tests which may hide errors
+      // when the test times out
+      queries: { retry: false },
     },
   })
-
-  const container = render(
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
-  )
-  return { user, ...container }
+  return {
+    user,
+    ...render(
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    ),
+  }
 }
