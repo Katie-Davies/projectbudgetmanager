@@ -18,14 +18,17 @@ beforeEach(cleanup)
 expect.extend(matchers)
 
 export function renderComponent(component: JSX.Element) {
-  const user = userEvent.setup()
-  return { user, ...render(component) }
+  // const user = userEvent.setup()
+  const renderResult = render(component)
+  return renderResult
 }
 
 export function renderWithRouter(location = '/') {
   const router = createMemoryRouter(routes, { initialEntries: [location] })
-  userEvent.setup()
-  return render(<RouterProvider router={router} />)
+  const user = userEvent.setup()
+  const renderResult = render(<RouterProvider router={router} />)
+
+  return { user, ...renderResult }
 }
 
 export function renderWithQuery(component: JSX.Element) {
