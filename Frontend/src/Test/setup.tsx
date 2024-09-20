@@ -24,11 +24,21 @@ export function renderComponent(component: JSX.Element) {
 }
 
 export function renderWithRouter(location = '/') {
-  const router = createMemoryRouter(routes, { initialEntries: [location] })
+  const queryClient = new QueryClient()
   const user = userEvent.setup()
-  const renderResult = render(<RouterProvider router={router} />)
+  console.log('routes:', routes)
+  const router = createMemoryRouter(routes, { initialEntries: [location] })
 
-  return { user, ...renderResult }
+  const renderResult = render(
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  )
+
+  return {
+    user,
+    ...renderResult,
+  }
 }
 
 export function renderWithQuery(component: JSX.Element) {
