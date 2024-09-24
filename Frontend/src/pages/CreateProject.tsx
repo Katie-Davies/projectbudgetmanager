@@ -90,6 +90,9 @@ function CreateProject() {
             placeholder="Enter Budget"
             className="m-3 border-solid border-2 border-gray-300 focus:outline-blue-500 h-10 placeholder:p-3"
           />
+          <label htmlFor="ProjectRate" className="ml-3">
+            HOURLY RATE
+          </label>
           <input
             name="rate"
             value={rate}
