@@ -2,23 +2,27 @@ using backend.Models;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using DotNetEnv;
+using Microsoft.Extensions.Configuration;
+using Microsoft.VisualBasic;
+using Microsoft.AspNetCore.Identity.Data;
 
 
 // Load environment variables from .env file
-DotNetEnv.Env.Load();
+//DotNetEnv.Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Get the connection string from environment variables
-var connection = Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING");
+var connection = builder.Configuration.GetConnectionString("DATABASE_CONNECTION_STRING");
 
 if (string.IsNullOrEmpty(connection))
 {
   throw new InvalidOperationException("The environment variable DATABASE_CONNECTION_STRING is not set.");
 }
-
-
-// string connection = builder.Configuration.GetConnectionString($"{DATABASE_CONNECTION_STRING}");
+{
+  Console.WriteLine("Successfully Connected to the Database");
+}
 
 // Register the DbContext with the connection string
 builder.Services.AddDbContext<ProjectDbContext>(options =>
@@ -37,7 +41,7 @@ builder.Services.AddCors(options =>
   });
 });
 
-
+builder.Services.AddAuthorization();
 var app = builder.Build();
 
 
@@ -55,11 +59,18 @@ app.UseCors("AllowReactApp");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+  app.UseDeveloperExceptionPage();
   app.UseSwagger();
   app.UseSwaggerUI();
+} else {
+  app.UseExceptionHandler("/home/error");
+  app.UseHsts();
 }
 
 // app.UseHttpsRedirection();
+
+app.UseRouting();
+app.UseAuthorization();
 
 // in memory projects
 var projects = new List<Project>
