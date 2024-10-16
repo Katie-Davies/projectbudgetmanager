@@ -80,7 +80,7 @@ function CreateProject() {
             className="m-3 border-solid border-2 border-gray-300 focus:outline-blue-500 h-10 placeholder:p-3"
           />
           <label htmlFor="ProjectBudget" className="ml-3">
-            BUDGET
+            BUDGET ($)
           </label>
           <input
             name="budget"
@@ -91,7 +91,7 @@ function CreateProject() {
             className="m-3 border-solid border-2 border-gray-300 focus:outline-blue-500 h-10 placeholder:p-3"
           />
           <label htmlFor="ProjectRate" className="ml-3">
-            HOURLY RATE
+            HOURLY RATE ($)
           </label>
           <input
             name="rate"
@@ -107,9 +107,6 @@ function CreateProject() {
             CREATE
           </Button>
         </div>
-        <Button onClick={(e) => handleNavigate(e)} className="m-3 ">
-          Report
-        </Button>
       </div>
     </div>
   )

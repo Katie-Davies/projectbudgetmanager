@@ -93,7 +93,7 @@ function LogPage() {
           className="border-solid border-2 border-gray-300 h-10 m-3"
           onChange={selectProject}
         >
-          <option value="">--Select an option--</option>
+          <option value="">--Select a Project--</option>
           {data?.map((data) => (
             <option value={data.projectName} key={data.projectId}>
               {data.projectName}
@@ -101,7 +101,7 @@ function LogPage() {
           ))}
         </select>
         <label htmlFor="hours" className="m-3">
-          TIME WORKED:
+          TIME WORKED (HOURS):
         </label>
         <input
           type="text"
@@ -114,7 +114,7 @@ function LogPage() {
       </form>
       <div className="flex justify-center flex-col flex-wrap content-center m-3">
         <Button className="m-4" onClick={handleSubmit}>
-          LOG TIME
+          SUBMIT
         </Button>
       </div>
     </div>

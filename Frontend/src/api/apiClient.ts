@@ -1,7 +1,7 @@
 import request from 'superagent'
 import { IProject, IUpdateProject } from '../../models/models'
 
-const api = 'http://localhost:5143'
+const api = process.env.REACT_APP_API_URL
 
 export async function getAllProjects() {
   const projects = await request.get(`${api}/projects`)
