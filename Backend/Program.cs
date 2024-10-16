@@ -72,53 +72,7 @@ if (app.Environment.IsDevelopment())
 app.UseRouting();
 app.UseAuthorization();
 
-// in memory projects
-var projects = new List<Project>
-{
- new Project
-    {ProjectId = 10,
-        ProjectName = "Disney",
-        ProjectOwner = "Kate",
-        Budget = 100000,
-        UsedBudget = 50000,
 
-    },
-    new Project
-    {
-        ProjectId = 2,
-        ProjectName = "Education",
-        ProjectOwner = "Kate",
-        Budget = 70000,
-        UsedBudget = 40000,
-
-    },
-    new Project
-    {
-       ProjectId = 1,
-        ProjectName = "Coke",
-        ProjectOwner = "Kate",
-        Budget = 40000,
-        UsedBudget = 30000,
-
-    },
-    new Project
-    {
-       ProjectId = 3,
-        ProjectName = "Marvel",
-        ProjectOwner = "Kate",
-        Budget = 60000,
-        UsedBudget = 10000,
-
-    },
-    new Project
-    {
-       ProjectId = 4,
-        ProjectName = "Power",
-        ProjectOwner = "Kate",
-        Budget = 90000,
-        UsedBudget = 90000,
-
-    }};
 
 app.MapGet("/projects", async (ProjectDbContext dbContext) =>
 {
@@ -138,18 +92,6 @@ app.MapGet("/projects", async (ProjectDbContext dbContext) =>
 
 app.MapPost("/projects", async (ProjectDbContext dbContext, Project project) =>
 {
-  // var newProject = new Project
-
-  // {
-  //   ProjectId = projects.Max(x => x.ProjectId) + 1,
-  //   ProjectName = project.ProjectName,
-  //   ProjectOwner = project.ProjectOwner,
-  //   Budget = project.Budget,
-  //   UsedBudget = 0
-
-  // };
-
-  // projects.Add(newProject);
   await dbContext.Projects.AddAsync(project);
   await dbContext.SaveChangesAsync();
   return Results.Created($"/projects/{project.ProjectId}", project);
