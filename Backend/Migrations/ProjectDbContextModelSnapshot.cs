@@ -55,45 +55,45 @@ namespace Backend.Migrations
                             ProjectId = 1,
                             Budget = 100000m,
                             HourlyRate = 150m,
-                            ProjectName = "Disney",
-                            ProjectOwner = "Kate",
-                            UsedBudget = 50000m
+                            ProjectName = "Contoso B2B Implementation",
+                            ProjectOwner = "Jack Johnson",
+                            UsedBudget = 5000m
                         },
                         new
                         {
                             ProjectId = 2,
-                            Budget = 70000m,
-                            HourlyRate = 140m,
-                            ProjectName = "Education",
-                            ProjectOwner = "Kate",
-                            UsedBudget = 40000m
+                            Budget = 75000m,
+                            HourlyRate = 210m,
+                            ProjectName = "Contoso DC migration",
+                            ProjectOwner = "Michael Smith",
+                            UsedBudget = 0m
                         },
                         new
                         {
                             ProjectId = 3,
-                            Budget = 40000m,
-                            HourlyRate = 130m,
-                            ProjectName = "Coke",
-                            ProjectOwner = "Kate",
-                            UsedBudget = 30000m
+                            Budget = 25000m,
+                            HourlyRate = 150m,
+                            ProjectName = "Fabrikam Landing Zone Design",
+                            ProjectOwner = "Michael Smith",
+                            UsedBudget = 300m
                         },
                         new
                         {
                             ProjectId = 4,
-                            Budget = 60000m,
+                            Budget = 275000m,
                             HourlyRate = 160m,
-                            ProjectName = "Marvel",
-                            ProjectOwner = "Kate",
-                            UsedBudget = 10000m
+                            ProjectName = "Packt E-commerce Site Build",
+                            ProjectOwner = "Lisa Brown",
+                            UsedBudget = 22000m
                         },
                         new
                         {
                             ProjectId = 5,
-                            Budget = 90000m,
-                            HourlyRate = 190m,
-                            ProjectName = "Power",
-                            ProjectOwner = "Kate",
-                            UsedBudget = 90000m
+                            Budget = 55000m,
+                            HourlyRate = 160m,
+                            ProjectName = "Sailing Vessels Auction App MVP",
+                            ProjectOwner = "Lisa Brown",
+                            UsedBudget = 46750m
                         });
                 });
 #pragma warning restore 612, 618

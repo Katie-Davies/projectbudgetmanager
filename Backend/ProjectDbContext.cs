@@ -14,11 +14,11 @@ public class ProjectDbContext : DbContext
 
     modelBuilder.Entity<Project>().Ignore(p => p.RemainingBudget);
     modelBuilder.Entity<Project>().HasData(
-                new Project { ProjectId = 1, ProjectName = "Disney", ProjectOwner = "Kate", Budget = 100000, UsedBudget = 50000, HourlyRate = 150 },
-                new Project { ProjectId = 2, ProjectName = "Education", ProjectOwner = "Kate", Budget = 70000, UsedBudget = 40000, HourlyRate = 140 },
-                new Project { ProjectId = 3, ProjectName = "Coke", ProjectOwner = "Kate", Budget = 40000, UsedBudget = 30000, HourlyRate = 130 },
-                new Project { ProjectId = 4, ProjectName = "Marvel", ProjectOwner = "Kate", Budget = 60000, UsedBudget = 10000, HourlyRate = 160 },
-                new Project { ProjectId = 5, ProjectName = "Power", ProjectOwner = "Kate", Budget = 90000, UsedBudget = 90000, HourlyRate = 190 }
+                new Project { ProjectId = 1, ProjectName = "Contoso B2B Implementation", ProjectOwner = "Jack Johnson", Budget = 100000, UsedBudget = 5000, HourlyRate = 150 },
+                new Project { ProjectId = 2, ProjectName = "Contoso DC migration", ProjectOwner = "Michael Smith", Budget = 75000, UsedBudget = 0, HourlyRate = 210 },
+                new Project { ProjectId = 3, ProjectName = "Fabrikam Landing Zone Design", ProjectOwner = "Michael Smith", Budget = 25000, UsedBudget = 300, HourlyRate = 150 },
+                new Project { ProjectId = 4, ProjectName = "Packt E-commerce Site Build", ProjectOwner = "Lisa Brown", Budget = 275000, UsedBudget = 22000, HourlyRate = 160 },
+                new Project { ProjectId = 5, ProjectName = "Sailing Vessels Auction App MVP", ProjectOwner = "Lisa Brown", Budget = 55000, UsedBudget = 46750, HourlyRate = 160 }
             );
   }
 }

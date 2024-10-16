@@ -44,6 +44,9 @@ namespace Backend.Migrations
 
                     b.Property<decimal>("UsedBudget")
                         .HasColumnType("decimal(18,2)");
+                    
+                    b.Property<decimal>("HourlyRate")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ProjectId");
 
