@@ -33,11 +33,11 @@ function LogPage() {
   }
 
   function handleSubmit(): void {
-    if (isNaN(Number(hours))) {
+    if (isNaN(Number(hours)) || Number(hours) === 0) {
       setErrorMessage('Please enter a valid number')
       setHours(0)
       return
-    } else {
+    }  else {
       const chosenProject = data?.find((data) => data.projectName === project)
       console.log(chosenProject)
       if (chosenProject) {
@@ -64,6 +64,10 @@ function LogPage() {
             alert('Time Logged') // Clear any error message if successful
           },
         })
+      } else if (!chosenProject) {
+        console.log('no project')
+        setErrorMessage('Please select a project')
+        return;
       }
     }
 
@@ -110,7 +114,7 @@ function LogPage() {
           onChange={handleChange}
           className="m-3 border-solid border-2 border-gray-300 focus:outline-customBlue h-10 placeholder:p-3"
         />
-        {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+        {errorMessage && <p className="text-red-500 m-3">{errorMessage}</p>}
       </form>
       <div className="flex justify-center flex-col flex-wrap content-center m-3">
         <Button className="m-4" onClick={handleSubmit}>
