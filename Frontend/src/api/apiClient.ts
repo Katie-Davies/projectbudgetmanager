@@ -3,6 +3,11 @@ import { IProject, IUpdateProject } from '../../models/models'
 
 const api = process.env.REACT_APP_API_URL
 
+if (!api) {
+  throw new Error('API URL is not set.')
+}
+
+
 export async function getAllProjects() {
   const projects = await request.get(`${api}/projects`)
   return projects.body as IProject[]
