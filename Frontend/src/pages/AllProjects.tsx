@@ -15,7 +15,11 @@ function AllProjects() {
   }, [projects])
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return (
+      <div className="flex justify-center items-center h-full">
+      <div>Loading...</div>
+      </div>
+    )
   }
   if (isError) {
     return <div>Error fetching data</div>

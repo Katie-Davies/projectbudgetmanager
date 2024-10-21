@@ -20,13 +20,13 @@ function App() {
 
   return (
     <div className="App flex justify-center flex-grow">
-      <div className="flex justify-center w-1/2 content-around flex-wrap">
+      <div className="flex justify-center w-1/2 content-center flex-wrap">
         <div>
-          <h1 className="text-5xl font-bold m-3 text-center">
-            ACME PROJECT MANAGEMENT
+          <h1 className="text-5xl font-bold m-3 text-center mb-10">
+            TRACKER
           </h1>
           <p>
-            A simple app for creating project and logging hours against them.
+            Contoso's internal project and time tracking app.
           </p>
         </div>
         <div className="flex justify-around mt-7 w-3/4 flex-wrap">
