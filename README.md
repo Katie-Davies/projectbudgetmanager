@@ -2,12 +2,12 @@
 
 ### Overview
 
-A mini project where you are able to track a projects buget. When the user creates a new project they set the budget and the hourly rate. The user can then add used hours on the project. A report is then generated to show the overall budget, remaining budget and hours used.
+A mini project where you are able to track a projects budget. When the user creates a new project they set the budget and the hourly rate. The user can then add used hours on the project. A report is then generated to show the overall budget, remaining budget and hours used.
 
 I created this project to practise new skills:
 
 - ASP.NET
-- Entity Framework
+- Entity Framework Core
 - Azure SQL Database
 
 ### Challenges
